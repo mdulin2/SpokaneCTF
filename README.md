@@ -1,12 +1,17 @@
 # SpokaneCTF
 
-Each one of these folders is a CTF challenge! An attack and defense challenge should have a deploy, connect, reset and shutdown script, for the user. 
+Each one of these folders is a CTF challenge!  
 
-The war game or jeopardy challenges are up to who ever is creating it! 
+What needs to be made: 
 
-Other things that need to be built are a scoreboard (which I believe Trevor is going to take the lead on) and  website for the competition (which is going to be known as the Mayors Cyber Cup) 
+- An attack/defense challenge should have a deploy, connect, reset and shutdown script, for the user. 
 
+- The war game or jeopardy challenges are up to who ever is creating it! 
 
+- Other things that need to be built are a scoreboard (which I believe Trevor is going to take the lead on), system architexture design for the challenges and website for the competition (which is going to be known as the Mayors Cyber Cup). 
+
+The Potential_Challenges.md is where the information on potential challenges is being stored.  
+Structure.md is how the competition is being hosted. 
 
 So far, we have four schools involved (Eastern Washington, Spokane Falls, Whitworth and Gonzaga). We would still like to get the other Spokane Community College and Idaho to get a team sent out. 
 
@@ -25,6 +30,6 @@ Companies:
 - Gravwell
 - Intrinium 
 
-However, I would like to get another company, industry cyber person or someone eelse as an asset. 
+However, I would like to get another company, industry cyber person or someone else as an asset. 
 
 
