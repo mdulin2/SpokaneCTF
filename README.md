@@ -29,7 +29,7 @@ Other than the people from the schools, were are trying to get community members
 Companies: 
 - Gravwell
 - Intrinium 
-
+- Spokane Security Coalition
 However, I would like to get another company, industry cyber person or someone else as an asset. 
 
 

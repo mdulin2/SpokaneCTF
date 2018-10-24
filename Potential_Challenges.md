@@ -1,8 +1,6 @@
 Challenges:
 Attack/Defense:
--	C-like issues:
-	- Printf() vulnerability
-	- Done, but needs the server, connection and things put onto it.
+
 - Access Control:
 	- Admin page is available
 	- Adding a user does not need authentication from admin.
@@ -30,6 +28,8 @@ Wargame:
 	- Connect to the phone through the ADB on port 5555.
 	- Told about ADB, but that is it.
 	- This is supposed to mimic the Android phone manufactures who left the debugger port open upon release.
+- C-like issues: **finished**
+	- Printf() vulnerability
 - XSS scripting:
 	- Could this all be one website?
 	- Basic functionality on error message
@@ -37,7 +37,7 @@ Wargame:
 	- A stored XSS on some data on the site for an email list or something?
 	- Bypassing with integrated HTML for an href for the color of a page?
 	- Bypass built in security mechanisms for particular blog posting? Find a way to bypass the filter.
-- Buffer Overflows: **finished**
+- Buffer Overflows:
 	- Redirecting the auth to a different memory address
 	- Getting a shell on machine
 - Social Engineering:
@@ -55,6 +55,8 @@ Wargame:
 		- Break the Cesar Cipher for text
 	- Given a very small public RSA key; break this…
 		- **finished**
+	- Huffman encoding problem.
+		- **finished**
 - Math Number Theory Problems:
 	- If I have a license plate, with numbers and letter in English that must be 7 characters, how many possibilities are there?
  		- 36^7
@@ -64,12 +66,9 @@ Wargame:
 - Hacker history trivia?
 - Race condition
 	- Not sure what to do about this one…
-- XXE
-	-Hint to look up vulnerabilities with XML files being displayed without validation.
-	 - Will need to have a website of some kind for this.
-	 - Might be a little much though…
 - Packet Fun:
 	- Website has had some network traffic stolen… See if this pcap packet can help you at all.
+	- Rodney!
 - Finding passwords from a thumb drive image:
 	- No idea how to do this…
 - Poor input validation?
