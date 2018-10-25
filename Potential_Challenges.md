@@ -4,10 +4,8 @@ Attack/Defense:
 - Access Control:
 	- Admin page is available
 	- Adding a user does not need authentication from admin.
-	- Predictable cookies.
+	- Predictable cookies (session fixation)
 	- Could either be a simple time-based mechanism that base-64 encoded or the md5 of the username?
-	- Static .pdfs that are available…
-	- A lot that could be done here!
 - SQL Injection:
 	- Get the flag from the search bar?
 	- Login as admin.
@@ -46,8 +44,6 @@ Wargame:
 		- Home town, dorm, pet names, computer type, Operating System, zagid…
 	- Need to have a professional write up for this.
 	- Bot for receiving emails
-- Open port, on a server, that is easy to connect to, with telnet with something…
-	- Told to check the network
 - Crypto:
 	- Keyboard cipher!
 		- Alternating from right to left.
@@ -57,6 +53,7 @@ Wargame:
 		- **finished**
 	- Huffman encoding problem.
 		- **finished**
+	- Breaking hashes
 - Math Number Theory Problems:
 	- If I have a license plate, with numbers and letter in English that must be 7 characters, how many possibilities are there?
  		- 36^7

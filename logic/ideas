@@ -1,0 +1,14 @@
+Have a simple script that allows to write files on an OS, read files and stuff. Also, the ability to run files from the command line. There will be a executable option, for basic commands. However, most of the time it will be simple things that invalidate bad user input. But, if you use the script from the file, the input is not validated, allowing the attacker to do whatever they want!
+
+- NAS system!
+	- Save and load files
+	- Basic commands on the OS with a whitelist of ls, cat, less and more.
+	- Vim to edit the files
+	- Would need to whitelist commands on the way in, but not from a file. The user could load the contents of the file, then run it, unfiltered.
+
+
+hack.me has a complete working reverse shell on it.
+
+Currently two vulns:
+- The blacklisting of characters forgot to ban &&.
+- The input validation does not happen from bash execution from a file. So, this lets a bash script to do whatever it wants, without restrictions. Poor sanitization. Both fairly easy to patch; one or two line fixes!
