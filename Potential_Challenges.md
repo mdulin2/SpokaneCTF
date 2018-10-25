@@ -9,20 +9,19 @@ Attack/Defense:
 - SQL Injection:
 	- Get the flag from the search bar?
 	- Login as admin.
-	- Set up a firewall, banning some keywords.
 - Directory Traversal:
 	- Have an application where it is possible to store and see data that is ‘yours’. But, without proper input validation.
 	- **Finished**
 - Command Injection:
 	- Basic PHP site that takes in an arbitrary users command to execute something bad on the system.
 - Logic Question:
-	- Not sure what to do about this one…
+	- In the 'logic' directory. Getting close to being done.
 
 Write Ups:
 - For all of the vulnerabilities for the Wargames, an answer needs to be given, to one of the judges, on how to patch the vulnerabilities.
 
 Wargame:
-- Android Phone:
+- Android Phone: **finished**
 	- Connect to the phone through the ADB on port 5555.
 	- Told about ADB, but that is it.
 	- This is supposed to mimic the Android phone manufactures who left the debugger port open upon release.
@@ -34,8 +33,8 @@ Wargame:
 	- How to grade this automatically…Could have judges for this too?
 	- A stored XSS on some data on the site for an email list or something?
 	- Bypassing with integrated HTML for an href for the color of a page?
-	- Bypass built in security mechanisms for particular blog posting? Find a way to bypass the filter.
-- Buffer Overflows:
+	- Bypass built in security mechanisms for particular blog posting?
+- Buffer Overflows: **finished**
 	- Redirecting the auth to a different memory address
 	- Getting a shell on machine
 - Social Engineering:
