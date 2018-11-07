@@ -25,10 +25,11 @@ Wargame:
 	- Connect to the phone through the ADB on port 5555.
 	- Told about ADB, but that is it.
 	- This is supposed to mimic the Android phone manufactures who left the debugger port open upon release.
+	- Currently on a single phone, but this could be emulated.
 - C-like issues: (Max) **finished**
 	- Printf() vulnerability
 - Buffer Overflows: (Max) **finished**
-	- Redirecting the auth to a different memory address
+	- Redirecting the auth to a different memory address, to get the flag.
 - XSS scripting: (Trevor)
 	- Could this all be one website?
 	- Basic functionality on error message
@@ -37,9 +38,9 @@ Wargame:
 	- Bypass built in security mechanisms for particular blog posting?
 
 - Social Engineering:
-	- Phishing email, judged by the judges. Would send mayorscup@gmail.com an email. If it is good, then give them points. Otherwise, ignore it. 
-	- Guarding a box in the CS lounge. Points for getting the box! 
-		- Could just put a flag value in the box for them to use. 
+	- Phishing email, judged by the judges. Would send mayorscup@gmail.com an email. If it is good, then give them points. Otherwise, ignore it.
+	- Guarding a box in the CS lounge. Points for getting the box!
+		- Could just put a flag value in the box for them to use.
 - Crypto (Max)
 	- Keyboard cipher!
 		- Alternating from right to left.
@@ -49,23 +50,19 @@ Wargame:
 		- **finished**
 	- Huffman encoding problem.
 		- **finished**
-	- Breaking hashes
 - Math Number Theory Problems (Trevor)
 	- If I have a license plate, with numbers and letter in English that must be 7 characters, how many possibilities are there?
  		- 36^7
 	- Same question but can be 1 through 7 characters
 		- 36 + 36^2+36^3+36^4+36^5+36^6+36^7
 	- Could have a few more questions.
-- Hacker history trivia (Utsal): 
-
-- Race condition (?): 
+- Race condition (?):
 	- Not sure what to do about this one…
 - Packet Fun (Rodney)
 	- Website has had some network traffic stolen… See if this pcap packet can help you at all.
-	
-- Finding passwords from a thumb drive image (Spokane Falls Folks)
-	
-- Having a “I’m in” hacker moment video 
+- Steganography (Juan)
+- Breaking hashes (Spokane Falls)
+- Having a “I’m in” hacker moment video setup
 
 
 
