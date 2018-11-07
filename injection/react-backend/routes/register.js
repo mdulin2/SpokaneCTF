@@ -11,7 +11,7 @@ var connection = mysql.createConnection({
   database: 'injection'
 });
 
-
+// Wrapper for MySQL
 class Database {
     constructor( config ) {
         this.connection = mysql.createConnection( {
@@ -41,50 +41,37 @@ class Database {
     }
 }
 
-// returns a promise of a query
-async function loginQuery(username, password){
-
-    // ' OR 1=1 UNION SELECT * FROM Login WHERE '1' = '1 is a malicious payload
-    // ' OR 1=1 --  (Fun fact, in mysql, there must be a space between the comment and the next character!)
-
-    // vuln is here... At least, one of them is!
-    const query = "SELECT * FROM Login WHERE username ='" + username + "' AND password = '" + password + "';"
-    console.log(query);
+async function registerUser(username, password){
 
     var database = new Database();
 
-    // Might want to send an error message here...
-    var rows = await database.query(query);
+    // The MySQL.escape is used to prevent SQL Injections
+    const queryCheck = "SELECT * FROM Login WHERE username = " + mysql.escape(username) + "";
+    const insertUser = "INSERT INTO Login(username,password) VALUES(" + mysql.escape(username) + ","+ mysql.escape(password) + ");"
+
+    // Disallow duplicate usernames
+    var rows = await database.query(queryCheck);
+    if(rows.length !== 0){
+        database.close();
+        return false;
+    }
+
+    //insert the user
+    var rows = await database.query(insertUser);
     database.close();
-    return rows;
+    return true;
 }
 
-// Genterates a session token for the user.
-function genToken(username){
-    // Session fixation
-    return username;
-}
+// Register for the user.
+async function register(username, password){
 
-// invalidate the session for the user
-async function logout(username){
-
-}
-
-// Login for the user. Will return either "" or a valid session ID.
-async function login(username, password){
-
-    const query_info = await loginQuery(username, password);
-    if(query_info.length === 0){
-        return "";
+    const query_info = await registerUser(username, password);
+    if(query_info === false ){
+        return "Duplicate username. Choose a different one."
     }
     else{
-        const token = genToken(username);
-        // store the token in the database.
-        return token;
+        return "Success!";
     }
-
-
-
 }
 
 /* GET users listing. */
@@ -93,8 +80,8 @@ router.post('/', async function(req, res, next) {
 
   const username = req.body.username;
   const password = req.body.password;
-  const loginResponse= await login(username,password);
-  res.send(loginResponse);
+  const registerResponse= await register(username,password);
+  res.send(registerResponse);
 });
 
 module.exports = router;
