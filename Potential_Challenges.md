@@ -14,8 +14,8 @@ Attack/Defense:
 	- **Finished**
 - Command Injection (Vanessa)
 	- Basic PHP site that takes in an arbitrary users command to execute something bad on the system.
-- Logic Question (Max)
-	- In the 'logic' directory. Getting close to being done.
+- Logic Question (Rodney)
+	- In the 'logic' directory. 
 
 Write Ups:
 - For all of the vulnerabilities for the Wargames, an answer needs to be given, to one of the judges, on how to patch the vulnerabilities.
@@ -38,7 +38,11 @@ Wargame:
 	- Bypass built in security mechanisms for particular blog posting?
 
 - Social Engineering:
-	- Phishing email, judged by the judges. Would send mayorscup@gmail.com an email. If it is good, then give them points. Otherwise, ignore it.
+	- Given a list of emails, point out the phishing emails.
+        - Embedded URL
+        - Phish from a phish from Grandma
+        - ILoveYou phishing email 
+        - Microsoft Word attachment
 	- Guarding a box in the CS lounge. Points for getting the box!
 		- Could just put a flag value in the box for them to use.
 - Crypto (Max)
@@ -64,6 +68,12 @@ Wargame:
 - Breaking hashes (Spokane Falls)
 - Having a “I’m in” hacker moment video setup
 
+Categories:
+- Software
+- Crypto
+- Logging
+- Social Engineering
+- Miscellaneous
 
 
 

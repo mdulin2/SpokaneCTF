@@ -1,10 +1,3 @@
-/*
-=======================================================
-CHAT APPLICATION IN C: CLIENT
-Author: RUCHIR SHARMA
-Email ID: ruchir.sharma@students.iiit.ac.in
-=======================================================
-*/
 
 #include <sys/socket.h>
 #include <sys/types.h>
@@ -93,11 +86,10 @@ int main(int argc, char *argv[])
 	printf("%s", inbuff);
 
 	fgets(outbuff,255,stdin);
-	printf("%s\n", outbuff);
 	in = send(fd,outbuff,strlen(outbuff),0);
 
 	bzero(inbuff,256);
-	bzero(outbuff,256);
+
 	while(1)
 	{
 
@@ -115,47 +107,100 @@ int main(int argc, char *argv[])
 			return 0;
 	    }
 
-		if(!strcmp(inbuff,"1")){
+		// Get usual output from the server and get user response.
+		printf("%s", inbuff);
+		bzero(outbuff,256);
+		fgets(outbuff,255,stdin);
+		printf("outbuff%s\n", outbuff);
 
-			// Get the file info
+		if(outbuff[0] == '1'){ // Upload a file
+
+			send(fd, "1", 1, 0); // send the server the option
 			printf("%s","Name of file: ");
 			char filename[256];
 			fgets(filename,255,stdin);
 			strtok(filename, "\n");
+			printf("File....%s\n", filename );
+			send(fd, filename, strlen(filename), 0);
 			char* file_contents = upload_file(filename);
 
-			// send both the filename and the file_info
-			send(fd, filename, strlen(filename), 0);
+
+			in = recv(fd,inbuff,255,0); // acknowledge
 			send(fd, file_contents, strlen(file_contents), 0);
+		}
+		else if(outbuff[0] == '2'){ // Retrieve a file
 
 		}
-		else if(!strcmp(inbuff,"2")){
-			// will get a file from the server
-			// Ask for a file name
-			// Then further, exploitable options... Overwrite, execute and get.
-			printf("%s","Retrieve file!");
-		}
-		else if(!strcmp(inbuff,"3")){
-			// Will send the command back to the server, to be executed.
-			printf("%s","OS Command!");
-		}
-		else if(!strcmp(inbuff,"q")){
-			close(fd);
-			exit(0);
-		}
-		else if(!strcmp(inbuff,"0")){
-			//nothing
-		}
-		else{
-			printf("%s", inbuff);
-		}
+		else if(outbuff[0] == '3'){ // run limited OS commands
 
-		bzero(inbuff,256);
-		fgets(outbuff,255,stdin);
+		}
+		// if(!strcmp(inbuff,"1")){
+		//
+		// 	// Get the file info
+		// 	printf("%s","Name of file: ");
+		// 	char filename[256];
+		// 	fgets(filename,255,stdin);
+		// 	strtok(filename, "\n");
+		// 	char* file_contents = upload_file(filename);
+		//
+		// 	// send both the filename and the file_info
+		// 	send(fd, filename, strlen(filename), 0);
+		// 	send(fd, file_contents, strlen(file_contents), 0);
+		//
+		// }
+		// else if(inbuff[0] == '2'){
+		// 	bzero(inbuff,256);
+		// 	in = recv(fd,inbuff,256,0);
+		// 	printf("%s\n", inbuff); // Type of file usage from server
+		//
+		// 	fgets(outbuff, 256, stdin);
+		// 	if(!strcmp(outbuff,"1\n")){
+		// 		// send initial usage
+		// 		bzero(inbuff,256);
+		// 		in = recv(fd,inbuff, 256, 0);
+		// 		// send the filename
+		// 		bzero(outbuff, 256);
+		// 		fgets(outbuff, 256, stdin);
+		// 		send(fd, outbuff, strlen(outbuff), 0);
+		// 	}
+		// 	else if(!strcmp(outbuff,"2")){
+		// 		// send initial usage
+		// 		bzero(inbuff,256);
+		// 		in = recv(fd,inbuff,256,0);
+		// 		printf("%s", inbuff);
+		// 	}
+		// 	else{
+		// 		printf("Wrong!%s\n", "");
+		// 	}
+		// }
+		// else if(!strcmp(inbuff,"3")){
+		// 	// Will send the command back to the server, to be executed.
+		//
+		// 	bzero(inbuff,256);
+		// 	in = recv(fd,inbuff,255,0);
+		// 	printf("%s\n", inbuff);
+		// 	bzero(inbuff,256);
+		//
+		// 	// Getting the user OS command to the NAS
+		// 	fgets(outbuff,255,stdin);
+		// 	send(fd, outbuff, 10, 0);
+		// 	bzero(outbuff,256);
+		//
+		// 	in = recv(fd,inbuff,255,0);
+		//
+		// 	bzero(inbuff,256);
+		// }
+		// else if(!strcmp(inbuff,"q")){
+		// 	close(fd);
+		// 	exit(0);
+		// }
+		// else if(!strcmp(inbuff,"0")){
+		// 	//nothing
+		// }
+		// else{
+		// 	printf("%s", inbuff);
+		// }
 
-		// Send message to the server
-		in = send(fd,outbuff,strlen(outbuff),0);
-		bzero(outbuff,256);
 	}
 	close(fd);
 	return 0;
