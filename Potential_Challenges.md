@@ -54,13 +54,14 @@ Wargame:
 		- **finished**
 	- Huffman encoding problem.
 		- **finished**
-- Math Number Theory Problems (Trevor)
+- Math Number Theory Problems (Max):
 	- If I have a license plate, with numbers and letter in English that must be 7 characters, how many possibilities are there?
  		- 36^7
 	- Same question but can be 1 through 7 characters
 		- 36 + 36^2+36^3+36^4+36^5+36^6+36^7
 	- Could have a few more questions.
-- Race condition (?):
+- Race condition (Max and Rodney):
+	- **finished**
 	- Not sure what to do about this one…
 - Packet Fun (Rodney)
 	- Website has had some network traffic stolen… See if this pcap packet can help you at all.
