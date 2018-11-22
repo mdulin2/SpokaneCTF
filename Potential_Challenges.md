@@ -54,12 +54,10 @@ Wargame:
 		- **finished**
 	- Huffman encoding problem.
 		- **finished**
-- Math Number Theory Problems (Max):
-	- If I have a license plate, with numbers and letter in English that must be 7 characters, how many possibilities are there?
- 		- 36^7
-	- Same question but can be 1 through 7 characters
-		- 36 + 36^2+36^3+36^4+36^5+36^6+36^7
-	- Could have a few more questions.
+- Math Number Theory Problems (Max) **finished**:
+	- RSA cracking key: amount of division operations needed. i
+	- Combinations are tiles on a floor
+	- Amount of possible passwords
 - Race condition (Max and Rodney):
 	- **finished**
 	- Not sure what to do about this one…
