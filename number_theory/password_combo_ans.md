@@ -1,0 +1,1 @@
+This type of math problem can be solved using basic number theory. With 64 total characters, the problem can be solved with 64^n, where n is the number of characters being used. So, for each n, add these together. The end result is 64^8 + 64^9 + 64^10 + 64^11 = 74958193672931246080
