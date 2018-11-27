@@ -1,8 +1,10 @@
-CREATE TABLE Login(
-    username varchar(200) not null,
-    password varchar(200),
+DROP TABLE IF EXISTS login;
+
+CREATE TABLE login(
+    username    VARCHAR(200) NOT NULL,
+    password    VARCHAR(200),
     PRIMARY KEY(username)
 );
 
-INSERT INTO Login(username, password)
-VALUES('Andrew','doomsday');
+INSERT INTO login(username, password) VALUES
+    ('peanuts','snoopy');
