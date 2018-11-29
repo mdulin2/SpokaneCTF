@@ -37,7 +37,7 @@ Wargame:
 	- Bypassing with integrated HTML for an href for the color of a page?
 	- Bypass built in security mechanisms for particular blog posting?
 
-- Social Engineering:
+- Social Engineering: (Utsal)
 	- Given a list of emails, point out the phishing emails.
         - Embedded URL
         - Phish from a phish from Grandma
@@ -55,16 +55,13 @@ Wargame:
 	- Huffman encoding problem.
 		- **finished**
 - Math Number Theory Problems (Max) **finished**:
-	- RSA cracking key: amount of division operations needed. i
+	- RSA cracking key: amount of division operations needed. 
 	- Combinations are tiles on a floor
 	- Amount of possible passwords
-- Race condition (Max and Rodney):
-	- **finished**
-	- Not sure what to do about this one…
-- Packet Fun (Rodney)
+- Race condition (Max and Rodney): **finished**
+- Packet Fun (Rodney/RJ):
 	- Website has had some network traffic stolen… See if this pcap packet can help you at all.
 - Steganography (Juan)
-- Breaking hashes (Spokane Falls)
 - Having a “I’m in” hacker moment video setup
 
 Categories:
