@@ -21,7 +21,7 @@ This is only the initial idea of how the competition is going to happen. If the 
      - Wargame/ Jeopardy
 
 ## Scoring
-- Solving a wargame will give x number of points, depending on the difficulty and effort needed to solve the challenge. More points given to the first 3 teams for solving the challenge.
+- Solving a wargame will give x number of points, depending on the difficulty and effort needed to solve the challenge. More points given to the first team that solves a challenge (1.5x). 
 - For the wargames, sending in write ups of mitigation reports will be extra points, if correct.
 - Attacking another teams box will give the flag for the challenge.
 - Teams will be subtracted points if their service is down/does not work.
