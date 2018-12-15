@@ -23,9 +23,8 @@ int is_prime(int number){
 // Runs the brute force is_prime algorithm
 void* pthread_slave(void){
     int length = VALUE;
-
+    
     int primality = is_prime(length);
-
     // Race Condition!
     if(length != VALUE){
         // Will have a flag that opens a file, or something along those lines.
