@@ -62,6 +62,9 @@ Wargame:
 - Packet Fun (Rodney/RJ):
 	- Website has had some network traffic stolen… See if this pcap packet can help you at all.
 - Steganography (Juan)
+	- Blank Canvas: Given an image with a white background. Find the flag hidden in the image.
+	- Rubik's Cube: Given an image of a rubiks cube. A text file is hidden in the rubiks cube image using the HideSeek algorithm. Find the text file that has the flag.
+	- Missing Piece: Given an image of a puzzle with a missing piece. An audio file is hidden in the image using the BlindHide algorithm. Analyze the audio file and discover the hidden message inside the audio.
 - Having a “I’m in” hacker moment video setup
 
 Categories:
