@@ -1,0 +1,33 @@
+Monitoring logs are an important step in maintaining system and information security. Your first challenge is to answer questions regarding auth.log, a log that maintains a record of all authentication attempts on a Debian based system. 
+
+Recommended tools: Splunk, grep, awk, sed
+
+What was the most commonly attempted username?
+First, look for a failed login attempt. Once a line is discovered, look for what makes that particular event unique in the log. This unique attribute should help us filter out other data and give us only the events we are interested in. In this case, we filter using:
+grep "from invalid" /var/auth.log
+this gived a record of each invalid ssh authentication attempt at the server. Now we need to "cut" down the excess information and get just the user names:
+grep "from invalid" auth.log | cut -d " " -f 10
+Now that we have a list of usernames, now all we have to do is write on some paper the unique usernames and how many times each one occurred in the log.
+Or, we can make the "uniq" command do it for us:
+grep "from invalid" auth.log | cut -d " " -f 10 | sort | uniq -c
+Notice how the sort command came out of nowhere? This is good practice whenever you use the "uniq" command as non-adjacent values are often not filtered with the command. Lets sort this one more time (-n is by numbers) to get the frequency of each username.
+grep "from invalid" auth.log | cut -d " " -f 10 | sort | uniq -c | sort -n
+Tip: For future log queries you might want to save long commands like this one to a shell script or alias.
+Answer:admin
+
+What kind of authentication for ssh is the server using?
+As you may have noticed, there are no failed password attempts. This is because the server does not accept passwords, only a key pair that was generated. When generating these, make sure you never share the private key with any server or person, that is what the public key is generated for.
+Answer: Public Key Pair
+
+What is the hostname of the server?
+Finding the syntax for various system logs is paramount to being a successful and secure system operator.
+Answer: SpokaneCTF
+
+How many unsuccessful login attempts where there?
+grep invalid auth.log | wc -l
+Answer: 953 (Double check this, didn't have the best tools to verify this)
+
+What was the highest attacked port number?
+Gonna crash for tonight, will fill this out another time. Have fun!
+cat auth.log | grep "from invalid" | grep "port" | cut -d " " -f 13 | sort -n
+Answer: 64549
