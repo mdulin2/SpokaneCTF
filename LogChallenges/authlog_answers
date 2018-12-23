@@ -1,3 +1,6 @@
+By Rj Garcia
+If you have questions shoot me an email: student110@protonmail.com
+
 Monitoring logs are an important step in maintaining system and information security. Your first challenge is to answer questions regarding auth.log, a log that maintains a record of all authentication attempts on a Debian based system. 
 
 Recommended tools: Splunk, grep, awk, sed
