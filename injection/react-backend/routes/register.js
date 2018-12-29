@@ -9,8 +9,8 @@ class Database {
   constructor(config) {
     this.connection = mysql.createConnection({
       host: "localhost",
-      user: "-",
-      password: "-",
+      user: "root",
+      password: "Airjordan23",
       database: "injection"
     });
   }

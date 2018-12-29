@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
@@ -6,20 +7,17 @@ import axios from 'axios';
 
 class register extends Component {
 
-
     // setting the initial state of the variables.
     state = {
-            username: "",
-            password: "",
-            registerMessage: ""
-        }
+        username: "",
+        password: "",
+        registerMessage: ""
+    }
 
     // Update the value of the username variable
     onKeyDownUsername = (event) => {
-
         // events are passed in by the event
         this.setState({username: event.target.value});
-
     }
 
     // Update the value of the password variable
@@ -33,7 +31,6 @@ class register extends Component {
             "username": this.state.username,
             "password": this.state.password,
         });
-
         this.setState({registerMessage: loginResponse.data})
     }
 

@@ -8,12 +8,6 @@ class loginScreen extends Component {
   // setting the initial state of the variables.
   state = { users: [], username: "", password: "", loginMessage: "" };
 
-  // componentDidMount() {
-  //     fetch('/users')
-  //     .then(res => res.json())
-  //     .then(users => this.setState({ users }));
-  // }
-
   // Update the value of the username variable
   onKeyDownUsername = event => {
     // events are passed in by the event
@@ -25,14 +19,13 @@ class loginScreen extends Component {
     this.setState({ password: event.target.value });
   };
 
+  // Action for pressing the login button
   onClickLogin = async () => {
     const loginResponse = await axios.post("/login", {
       username: this.state.username,
       password: this.state.password
     });
 
-    console.log(loginResponse);
-    console.log(loginResponse.data === "");
     if (loginResponse.data === "") {
       this.setState({ loginMessage: "Bad Login" });
     } else {

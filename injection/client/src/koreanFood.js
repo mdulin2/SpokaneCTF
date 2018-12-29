@@ -14,6 +14,7 @@ class koreanFood extends Component {
     this.setState({ koreanFoodName: event.target.value });
   };
 
+  // Action for clicking the search button
   onClickSearch = async () => {
     const searchResponse = await axios.post("/koreanFood", {
       food_name: this.state.koreanFoodName
@@ -27,9 +28,11 @@ class koreanFood extends Component {
         <td>{food_item.food_id}</td>
         <td>{food_item.food_name}</td>
         <td>{food_item.price}</td>
+        <td>{food_item.description}</td>
       </tr>
     ));
 
+  // Styling
   render() {
     return (
       <div className="App">
@@ -50,6 +53,7 @@ class koreanFood extends Component {
             <th>Food ID</th>
             <th>Food Name</th>
             <th>Price</th>
+            <th>Description</th>
             {this.renderKoreanFoodSearch()}
           </table>
         </center>
