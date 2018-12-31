@@ -65,7 +65,7 @@ def get_e(key1,key2):
     return e
 
 #Calculates the inverse modulo of a to m
-def invereMod(a,m):
+def inverseMod(a,m):
     for i in range(1,m):
         if(m*i + 1) % a ==0:
             return (m*i +1) //a
@@ -81,7 +81,7 @@ def make_key_set(digits):
     e = get_e(key1,key2)
     print "e: ",e
     tot = totient(key1,key2)
-    d = invereMod(e,tot)
+    d = inverseMod(e,tot)
     print "D: ",d
     return (e,n), (d,n)
 
@@ -107,7 +107,7 @@ def break_key(e,N):
 
     tot = totient(p,q)
     print "totient:", tot
-    d = invereMod(e, tot)
+    d = inverseMod(e, tot)
     return d
 
 def main():

@@ -3,6 +3,10 @@
 #include <unistd.h>
 #include <pthread.h>
 
+/*
+Compile with: gcc challenge.c -o challenge -pthread
+*/
+
 int VALUE;
 int primality;
 
@@ -22,11 +26,11 @@ int is_prime(int number){
 
 // Runs the brute force is_prime algorithm
 void* pthread_slave(void){
-    int length = VALUE;
-    
-    int primality = is_prime(length);
-    // Race Condition!
-    if(length != VALUE){
+    int new_value = VALUE;
+
+    int primality = is_prime(new_value);
+
+    if(new_value != VALUE){
         // Will have a flag that opens a file, or something along those lines.
         printf("Race!\n" );
     }
@@ -38,10 +42,14 @@ int main(){
     int ret;
     while(1)
     {
+        // Gets the input from the user.
         printf("Give me a value: \n");
         scanf ("%d",&VALUE);
+
         // opens a new thread
         ret = pthread_create(&id,NULL,&pthread_slave,NULL);
+
+        // Displays the output of the primality to the user.
         if(primality == 0){
             printf("The value %d is not prime...\n",VALUE);
         }else{

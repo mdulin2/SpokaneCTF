@@ -1,6 +1,3 @@
-This will be an attack/defense problem, likely.
-So, we will need a simple deploy and connect script for this.
-
 The premise behind this is an open source Intelligence (OSINT) agent. Anybody can add or read information about a company in the system.
 
 There are several files here:
