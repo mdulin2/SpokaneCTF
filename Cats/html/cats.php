@@ -11,7 +11,7 @@
 <?php
 
 // Get all of the pictures of wonderful cats from the pictures directory.
-$dir    = '/var/www/html/pictures';
+$dir    = '/home/strikeout/SpokaneCTF/Cats/html/pictures';
 $allFiles = scandir($dir);
 $files = array_diff($allFiles, array('.','..'));
 // The ID of the picture, from the URL 
