@@ -1,3 +1,3 @@
 #Super complicated...
 
-python MessageStorer.py $1 &
+python MessageStorer.py &

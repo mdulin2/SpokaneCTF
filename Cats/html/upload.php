@@ -20,7 +20,7 @@
   if(!empty($_FILES['uploaded_file']))
   {
 	// The insert path
-    $path = "/var/www/html/pictures/";
+    $path = "/home/strikeout/SpokaneCTF/Cats/html/pictures/";
     $path = $path . basename( $_FILES['uploaded_file']['name']);
 	
 	// Should probably put some input validation here. 
