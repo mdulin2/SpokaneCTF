@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import  { Redirect } from 'react-router-dom';
 import "./App.css";
 import axios from "axios";
 
@@ -26,10 +27,13 @@ class loginScreen extends Component {
       password: this.state.password
     });
 
+    console.log(loginResponse);
+
+    // Messsage logic for logging in
     if (loginResponse.data === "") {
       this.setState({ loginMessage: "Bad Login" });
     } else {
-      // Add the cookie... give a login link/redirect
+
       this.setState({ loginMessage: "Success" });
     }
   };
@@ -63,6 +67,9 @@ class loginScreen extends Component {
         <div>
           <a href="/register"> Register... </a>
         </div>
+        {this.state.loginMessage === 'Success' &&
+        <p> <a href="/koreanFood">Korean Food Page!</a></p>
+        }
         <marquee>{this.state.loginMessage}</marquee>
       </div>
     );

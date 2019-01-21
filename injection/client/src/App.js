@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom'
+import React from 'react';
 import { Switch, BrowserRouter, Route } from 'react-router-dom';
 
 import loginScreen from './loginScreen.js';

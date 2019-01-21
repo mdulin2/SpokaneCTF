@@ -3,6 +3,7 @@ import "./App.css";
 import axios from "axios";
 
 class koreanFood extends Component {
+  // Essentially global state variables
   state = {
     koreanFoodName: "",
     koreanFoodSearch: []
@@ -22,9 +23,11 @@ class koreanFood extends Component {
     this.setState({ koreanFoodSearch: searchResponse.data });
   };
 
+  // Displays the food search, from the food_item object:
+    // food_item {food_id,food_name,price, description}
   renderKoreanFoodSearch = () =>
     this.state.koreanFoodSearch.map(food_item => (
-      <tr>
+      <tr key = {food_item.food_id}>
         <td>{food_item.food_id}</td>
         <td>{food_item.food_name}</td>
         <td>{food_item.price}</td>
@@ -50,11 +53,15 @@ class koreanFood extends Component {
         <center>
           <br />
           <table>
-            <th>Food ID</th>
-            <th>Food Name</th>
-            <th>Price</th>
-            <th>Description</th>
+          <tbody>
+            <tr>
+                <th>Food ID</th>
+                <th>Food Name</th>
+                <th>Price</th>
+                <th>Description</th>
+            </tr>
             {this.renderKoreanFoodSearch()}
+            </tbody>
           </table>
         </center>
       </div>
