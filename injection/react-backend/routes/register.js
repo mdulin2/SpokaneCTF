@@ -3,6 +3,7 @@
 var express = require("express");
 var router = express.Router();
 var mysql = require("mysql");
+var pbkdf2 = require('pbkdf2');
 
 // Wrapper for MySQL
 class Database {
@@ -38,11 +39,12 @@ async function registerUser(username, password) {
   // The MySQL.escape is used to prevent SQL Injections
   const queryCheck =
     "SELECT * FROM Login WHERE username = " + mysql.escape(username) + "";
+  const hash = pbkdf2.pbkdf2Sync(password, 'somesalt...', 1, 32, 'sha512').toString('base64');
   const insertUser =
     "INSERT INTO Login(username,password) VALUES(" +
     mysql.escape(username) +
     "," +
-    mysql.escape(password) +
+    mysql.escape(hash) +
     ");";
 
   // Disallow duplicate usernames
