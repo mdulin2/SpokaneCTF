@@ -1,26 +1,27 @@
 # Blue Team
+# Challenge 
+The entire point of the blue team challenges is to be able to recognize when malicious events are occuring. Be able to recognize these!  
+To get points: 
+* Find a malicious payload in the attack/defense challenges .pcap file. 
+* Find a judge to talk to about the finding. 
+* Explain why the payload is malicious.
+* If the judge believes you understand the malicious attempt and the attempt was malicious then he will give you the passphrase associated with the challenge.  
 
-The entire point of the blue team challenges is to be able to recognize when malicious events are occuring. Being able to recognize this!
-
+Only one blue team challenge per attack/defense challenge. 
 # Setup
 
-For each attack/defense style challenge there will be two different blue team turnins on the wargame scoreboard. The blue team notice will be sent via email to @someemail where the judge will determine if the payload is actually malicious or not. If the payload is malicious, then the judge will send the coresponding flag, which will then be submitted to the scoreboard for points. 
-
+For each attack/defense style challenge there will be one blue team challenge in the wargame section. The judges will have sheets with the flags for the blue team challenges. 
 ## Judgement
-How to judge this? Should probably ask Jake about this 
+If the claim is **accurate** then give them the points. 
 
 
 ## Flags:
 From blue team turn in 1, to blue team turn in 8
 - Korean BBQ:
-	- It is a wonderful life
 	- Gotta get that broom broom broom
 - OSINT: 
 	- Apple sucks
-	- GO home peanutbuffer cakes
 - Cats: 
-	- Hermione, that cat crookshanks costume is amazing.
 	- Any dog under fifty pounds is a cat and cats are pointless
 - NAS:
-	- Logic me home boys!
-	- Hi, my name is buddy the elf... What's your favorite color! 
+	- Hi, my name is buddy the elf
