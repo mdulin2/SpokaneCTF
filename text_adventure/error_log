@@ -1,0 +1,21 @@
+gcc adventure.c -o adventure 
+
+
+adventure.c: In function ‘endGame’:
+adventure.c:47:5: warning: format not a string literal and no format arguments [-Wformat-security]
+     printf(strcat(hacker,",you have fought very bravily, but I am sorry...Hack the planet!\n"));
+     ^
+adventure.c: In function ‘main’:
+adventure.c:75:13: warning: format not a string literal and no format arguments [-Wformat-security]
+             printf(room1());
+             ^
+adventure.c:80:13: warning: format not a string literal and no format arguments [-Wformat-security]
+             printf(room2());
+             ^
+adventure.c:84:13: warning: format not a string literal and no format arguments [-Wformat-security]
+             printf(room3());
+             ^
+adventure.c:89:13: warning: format not a string literal and no format arguments [-Wformat-security]
+             printf(room4());
+             ^
+
