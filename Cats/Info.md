@@ -24,3 +24,6 @@ In order to start, put html into the **var/www** folder. Once that is done, star
 - The file upload does not do proper sanitation on user input. Instead of uploading an image, upload a PHP file to execute arbitrary code on the system.
 - An alternative approach would be to override a file on the OS (such as the etc/password). This have not tested this though.
 - The attack.php, when uploaded, opens the etc/passwd to get the password hashes.
+
+# Mitigation: 
+- Allow only image files

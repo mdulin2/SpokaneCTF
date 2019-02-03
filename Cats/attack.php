@@ -1,6 +1,6 @@
 <?php
 
-$fh = fopen('/etc/passwd','r');
+$fh = fopen('/etc/Services/ServiceA/flag.txt','r');
 while ($line = fgets($fh)) {
 
    echo($line);
